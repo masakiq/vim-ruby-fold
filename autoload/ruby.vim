@@ -47,6 +47,21 @@ function! ruby#fold(line)
   endif
 endfunction
 
+function! ruby#rspec_fold_text()
+  let foldsize = (v:foldend-v:foldstart)
+  return getline(v:foldstart).' ('.foldsize.' lines)'
+endfunction
+
+function! ruby#simple_rspec_fold(line)
+  let rspec_block_regex = '^\s*x\?describe\|context\|it\s.\{-}do\s*$'
+  let current_line = getline(v:lnum)
+  if match(current_line, rspec_block_regex) >= 0
+    return ">1"
+  else
+    return "="
+  endif
+endfunction
+
 function! ruby#rspec_fold(line)
   " check if fold end is known
   if b:rspec_fold_end > 0 && a:line <= b:rspec_fold_end
