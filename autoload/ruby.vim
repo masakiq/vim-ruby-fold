@@ -47,7 +47,7 @@ function! ruby#fold(line)
   endif
 endfunction
 
-function! ruby#rspec_fold_text()
+function! ruby#simple_fold_text()
   let foldsize = (v:foldend-v:foldstart)
   return getline(v:foldstart)
 endfunction

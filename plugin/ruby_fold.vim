@@ -9,9 +9,9 @@ if has("autocmd")
     autocmd FileType ruby
           \ if expand('%:t') =~# '_spec.rb$' |
           \   let b:rspec_fold_end = 0 |
-          \   setlocal foldexpr=ruby#simple_rspec_fold(v:lnum) foldmethod=expr foldtext=ruby#rspec_fold_text()|
+          \   setlocal foldexpr=ruby#simple_rspec_fold(v:lnum) foldmethod=expr foldtext=ruby#simple_fold_text()|
           \ else |
-          \   setlocal foldexpr=ruby#fold(v:lnum) foldmethod=expr |
+          \   setlocal foldexpr=ruby#fold(v:lnum) foldmethod=expr foldtext=ruby#simple_fold_text() |
           \ endif
   augroup END
 endif
