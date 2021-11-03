@@ -53,7 +53,7 @@ function! ruby#simple_fold_text()
 endfunction
 
 function! ruby#simple_rspec_fold(line)
-  let rspec_block_regex = '^\s*x\?describe\|context\|it\s.\{-}do\s*$'
+  let rspec_block_regex = '^\s*x\?describe\s\|context\s\|it_behaves_like\s\|it\s\|it\s.\{-}do\s*$'
   let current_line = getline(v:lnum)
   if match(current_line, rspec_block_regex) >= 0
     return ">1"
@@ -76,7 +76,7 @@ function! ruby#rspec_fold(line)
     return 1
   endif
 
-  let spec_line_regex = '^\s*x\?it\|context\|describe\s.\{-}do\s*$'
+  let spec_line_regex = '^\s*x\?it\s\|it\s\|it_behaves_like\s\|context\s\|describe\s.\{-}do\s*$'
   " fold starts on an `it` line
   if getline(a:line) =~# spec_line_regex
     return 1
